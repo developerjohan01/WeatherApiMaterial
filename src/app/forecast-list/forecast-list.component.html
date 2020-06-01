@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  5 day Forecast - Forecast every 3 hours
+</mat-toolbar>
+
+<ng-container *ngIf="!forecastList.length">
+  <h2>
+      No Data!
+  </h2>
+</ng-container>
+<mat-table [dataSource]="forecastList">
+  <!-- User name Definition -->
+  <ng-container matColumnDef="temp">
+    <mat-header-cell *matHeaderCellDef> Temperature </mat-header-cell>
+    <mat-cell *matCellDef="let forecast"> {{forecast.main.temp}} C</mat-cell>
+  </ng-container>
+
+  <!-- Age Definition -->
+  <ng-container matColumnDef="dateText">
+    <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+    <mat-cell *matCellDef="let forecast"> {{forecast.dateText}} </mat-cell>
+  </ng-container>
+
+  <!-- Title Definition -->
+  <ng-container matColumnDef="info">
+    <mat-header-cell *matHeaderCellDef> Info </mat-header-cell>
+    <mat-cell *matCellDef="let forecast"> {{forecast.weather.main}} </mat-cell>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+</mat-table>
+
