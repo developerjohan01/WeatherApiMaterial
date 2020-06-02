@@ -1,6 +1,12 @@
 # WeatherApiMaterial
+[Angular](https://angular.io/) + [Material](https://material.angular.io/) App built with TypeScript.  
+
+The app is calling the [OpenWeather API](https://openweathermap.org/api) and is displaying  a list of forecasts.  
+
+[5 day / 3 hour forecast API Documentation](https://openweathermap.org/forecast5)  
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+
 
 ## Development server
 
