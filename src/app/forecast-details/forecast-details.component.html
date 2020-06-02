@@ -1,4 +1,5 @@
 <mat-toolbar color="accent">
-  Forecast @ {{forecast.dateText.slice(0, -3)}}
+  <ng-container *ngIf="forecast">Forecast @ {{forecast?.dateText.slice(0, -3)}}</ng-container>
+  <ng-container *ngIf="!forecast">Forecast @ ?</ng-container>
 </mat-toolbar>
 <wapi-weather-card [forecast]="forecast"></wapi-weather-card>
