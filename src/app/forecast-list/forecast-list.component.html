@@ -1,33 +1,42 @@
 <mat-toolbar color="primary">
   5 day Forecast - Forecast every 3 hours
 </mat-toolbar>
+<div class="toolbar-spacer"></div>
 
 <ng-container *ngIf="!forecastList.length">
   <h2>
       No Data!
   </h2>
 </ng-container>
-<mat-table [dataSource]="forecastList">
-  <!-- User name Definition -->
+<mat-table [dataSource]="forecastList" *ngIf="forecastList.length">
+  <!-- Temperature -->
   <ng-container matColumnDef="temp">
     <mat-header-cell *matHeaderCellDef> Temperature </mat-header-cell>
     <mat-cell *matCellDef="let forecast"> {{forecast.main.temp}} C</mat-cell>
   </ng-container>
 
-  <!-- Age Definition -->
+  <!-- Date and Time -->
   <ng-container matColumnDef="dateText">
     <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-    <mat-cell *matCellDef="let forecast"> {{forecast.dateText}} </mat-cell>
+    <mat-cell *matCellDef="let forecast"> {{forecast.dateText.slice(0, -3)}} </mat-cell>
   </ng-container>
 
-  <!-- Title Definition -->
+  <!-- Information -->
   <ng-container matColumnDef="info">
     <mat-header-cell *matHeaderCellDef> Info </mat-header-cell>
     <mat-cell *matCellDef="let forecast"> {{forecast.weather.main}} </mat-cell>
   </ng-container>
 
+  <!-- Icon -->
+  <ng-container matColumnDef="icon">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let forecast">
+      <wapi-weather-image [imageName]="forecast.weather.icon"></wapi-weather-image>
+    </mat-cell>
+  </ng-container>
+
   <!-- Header and Row Declarations -->
   <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="showDetails(row)"></mat-row>
 </mat-table>
 

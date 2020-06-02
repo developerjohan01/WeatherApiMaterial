@@ -12,17 +12,30 @@ import {Observable} from "rxjs";
 export class ForecastListComponent implements OnInit {
   forecastObservable: Observable<Forecast[]>
   forecastList = new Array<Forecast>()
-  columnsToDisplay = ['info', 'temp', 'dateText'];
+  columnsToDisplay = ['icon', 'info', 'temp', 'dateText'];
 
   constructor(private service: ForecastService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
     this.forecastObservable = service.getForecastListObservable();
-    this.forecastObservable.subscribe(result => this.forecastList = result );
+    this.forecastObservable.subscribe(result => this.forecastList = result);
   }
 
   ngOnInit(): void {
     this.getForecast()
+  }
+
+  async showDetails(forecast: Forecast) {
+    console.log(forecast);
+    await this.router.navigate(
+      ['forecast-details'],
+      {
+        // relativeTo: this.activatedRoute,
+        state: {
+          forecast
+        }
+      }
+    );
   }
 
   private getForecast() {
@@ -41,5 +54,4 @@ export class ForecastListComponent implements OnInit {
     // }
     this.service.fetchForecast("", 0.0, 0.0);
   }
-
 }

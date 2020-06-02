@@ -1,0 +1,35 @@
+<mat-card class="wapi-margin">
+  <mat-card-header>
+    <mat-card-title>
+      {{forecast?.weather.main}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <wapi-weather-image [imageName]="forecast?.weather.icon"></wapi-weather-image>
+        <h1>{{forecast?.weather.description}}</h1>
+      </mat-list-item>
+      <mat-list-item class="wapi-padding-top">
+        <h2>
+          Temperature {{forecast?.main.temp}} C
+        </h2>
+      </mat-list-item>
+      <mat-list-item class="wapi-padding-top">
+        <h3 class="feel-temperature">
+          Feels like {{forecast?.main.tempFeelsLike}} C
+        </h3>
+      </mat-list-item>
+      <mat-list-item class="wapi-padding-top">
+        <mat-label>
+          <span class="max-temperature"> Max {{forecast?.main.tempMax}} C</span>
+        </mat-label>
+      </mat-list-item>
+      <mat-list-item>
+        <h3>
+          <span class="min-temperature"> Min {{forecast?.main.tempMin}} C</span>
+        </h3>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
